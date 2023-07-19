@@ -13,9 +13,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
                 DockerPresenceBootstrapConfiguration.class,
                 EmbeddedMariaDBBootstrapConfiguration.class
         },
-        properties = {
-                "embedded.mariadb.database=booking_db"
-        },
         webEnvironment = RANDOM_PORT
 )
 class BookingServiceSampleApplicationTests {

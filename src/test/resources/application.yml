@@ -6,3 +6,5 @@ spring:
     driverClassName: org.mariadb.jdbc.Driver
   liquibase:
     change-log: classpath:db/changelog/changelog-current.xml
+
+embedded.mariadb.database: booking_db

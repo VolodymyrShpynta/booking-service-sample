@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.test.context.TestConfiguration;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -21,9 +21,6 @@ import java.sql.SQLException;
                 DockerPresenceBootstrapConfiguration.class,
                 EmbeddedMariaDBBootstrapConfiguration.class,
                 MigrationTest.MigrationTestConfiguration.class
-        },
-        properties = {
-                "embedded.mariadb.database=booking_db"
         }
 )
 class MigrationTest {
@@ -53,7 +50,7 @@ class MigrationTest {
     }
 
     @EnableAutoConfiguration
-    @Configuration
+    @TestConfiguration
     static class MigrationTestConfiguration {
 
     }
