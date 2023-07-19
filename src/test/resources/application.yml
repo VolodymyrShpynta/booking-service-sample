@@ -1,10 +1,8 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:booking_db
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    url: jdbc:mariadb://${embedded.mariadb.host}:${embedded.mariadb.port}/${embedded.mariadb.database}?createDatabaseIfNotExist=true
+    username: ${embedded.mariadb.user}
+    password: ${embedded.mariadb.password}
+    driverClassName: org.mariadb.jdbc.Driver
   liquibase:
     change-log: classpath:db/changelog/changelog-current.xml
