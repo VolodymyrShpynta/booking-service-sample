@@ -12,9 +12,15 @@
     <groupId>com.vshpynta.booking</groupId>
     <artifactId>booking-service-sample</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <name>booking-service-sample</name>
     <description>Sample project for room booking service</description>
+
+    <modules>
+        <module>booking-service-db</module>
+        <module>booking-service</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,55 +32,29 @@
         <embedded-mariadb.version>2.3.2</embedded-mariadb.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Own dependencies :: start -->
+            <dependency>
+                <groupId>com.vshpynta.booking</groupId>
+                <artifactId>booking-service</artifactId>
+                <version>${project.version}</version>
+                <classifier>original</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.vshpynta.booking</groupId>
+                <artifactId>booking-service-db</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- Own dependencies :: end -->
 
-        <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-        </dependency>
-
-        <!-- Testing dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.playtika.testcontainers</groupId>
-            <artifactId>embedded-mariadb</artifactId>
-            <version>${embedded-mariadb.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
+            <!-- Testing dependencies -->
+            <dependency>
+                <groupId>com.playtika.testcontainers</groupId>
+                <artifactId>embedded-mariadb</artifactId>
+                <version>${embedded-mariadb.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

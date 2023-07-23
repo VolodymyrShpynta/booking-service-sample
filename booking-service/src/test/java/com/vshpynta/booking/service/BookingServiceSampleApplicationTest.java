@@ -15,7 +15,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         },
         webEnvironment = RANDOM_PORT
 )
-class BookingServiceSampleApplicationTests {
+class BookingServiceSampleApplicationTest {
 
     @Test
     void contextLoads() {

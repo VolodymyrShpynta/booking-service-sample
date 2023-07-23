@@ -1,0 +1,11 @@
+#TODO: move to functional tests module
+spring:
+  datasource:
+    url: jdbc:mariadb://${embedded.mariadb.host}:${embedded.mariadb.port}/${embedded.mariadb.database}?createDatabaseIfNotExist=true
+    username: ${embedded.mariadb.user}
+    password: ${embedded.mariadb.password}
+    driverClassName: org.mariadb.jdbc.Driver
+  liquibase:
+    change-log: classpath:db/changelog/changelog-current.xml
+
+embedded.mariadb.database: booking_db
