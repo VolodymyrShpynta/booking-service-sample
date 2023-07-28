@@ -29,6 +29,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
+        <springdoc-openapi.version>1.7.0</springdoc-openapi.version>
         <embedded-mariadb.version>2.3.2</embedded-mariadb.version>
     </properties>
 
@@ -47,6 +48,14 @@
                 <version>${project.version}</version>
             </dependency>
             <!-- Own dependencies :: end -->
+
+            <!-- region swagger -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi.version}</version>
+            </dependency>
+            <!-- endregion -->
 
             <!-- Testing dependencies -->
             <dependency>
