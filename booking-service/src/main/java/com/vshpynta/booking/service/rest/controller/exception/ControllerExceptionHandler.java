@@ -1,5 +1,6 @@
 package com.vshpynta.booking.service.rest.controller.exception;
 
+import com.vshpynta.booking.service.exception.BookingServiceException;
 import com.vshpynta.booking.service.rest.controller.ApartmentsController;
 import com.vshpynta.booking.service.rest.dto.BookingServiceErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,6 +43,20 @@ public class ControllerExceptionHandler {
         return BookingServiceErrorResponse.builder()
                 .errorCode(GENERAL_ERROR.getCode())
                 .errorMessage(format("Bad request error. Incident ID: [%s]", incidentId))
+                .build();
+    }
+
+    @ExceptionHandler({BookingServiceException.class})
+    @ResponseStatus(BAD_REQUEST)
+    @ResponseBody
+    public BookingServiceErrorResponse onPopupServiceException(HttpServletRequest httpRequest,
+                                                               BookingServiceException exception) {
+        var incidentId = generateId();
+        log.warn("Service error occurred. Incident ID: {}. Cause: {}",
+                incidentId, getRootCauseMessage(exception), exception);
+        return BookingServiceErrorResponse.builder()
+                .errorCode(exception.getErrorCode())
+                .errorMessage(format("Bad request error: [%s]. Incident ID: [%s]", exception.getMessage(), incidentId))
                 .build();
     }
 
