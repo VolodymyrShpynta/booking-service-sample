@@ -18,17 +18,11 @@
     <dependencies>
         <dependency>
             <groupId>com.vshpynta.booking</groupId>
-            <artifactId>booking-service-db</artifactId>
-        </dependency>
-
-        <!-- TODO: move to persistence module       -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>booking-service-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
+            <groupId>com.vshpynta.booking</groupId>
+            <artifactId>booking-service-persistence-mariadb</artifactId>
         </dependency>
 
         <dependency>

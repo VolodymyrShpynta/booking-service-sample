@@ -18,7 +18,9 @@
     <description>Sample project for room booking service</description>
 
     <modules>
+        <module>booking-service-common</module>
         <module>booking-service-db</module>
+        <module>booking-service-persistence</module>
         <module>booking-service</module>
     </modules>
 
@@ -38,14 +40,24 @@
             <!-- Own dependencies :: start -->
             <dependency>
                 <groupId>com.vshpynta.booking</groupId>
-                <artifactId>booking-service</artifactId>
+                <artifactId>booking-service-common</artifactId>
                 <version>${project.version}</version>
-                <classifier>original</classifier>
             </dependency>
             <dependency>
                 <groupId>com.vshpynta.booking</groupId>
                 <artifactId>booking-service-db</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vshpynta.booking</groupId>
+                <artifactId>booking-service-persistence-mariadb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vshpynta.booking</groupId>
+                <artifactId>booking-service</artifactId>
+                <version>${project.version}</version>
+                <classifier>original</classifier>
             </dependency>
             <!-- Own dependencies :: end -->
 
