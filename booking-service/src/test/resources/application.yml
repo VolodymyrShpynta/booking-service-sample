@@ -1,3 +1,6 @@
+server:
+  servlet.context-path: /booking-service
+
 #TODO: move to functional tests module
 spring:
   datasource:
