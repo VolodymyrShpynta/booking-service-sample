@@ -2,6 +2,7 @@ package com.vshpynta.booking.service.rest.controller.exception;
 
 import com.vshpynta.booking.service.exception.BookingServiceException;
 import com.vshpynta.booking.service.rest.controller.ApartmentsController;
+import com.vshpynta.booking.service.rest.controller.BookingController;
 import com.vshpynta.booking.service.rest.dto.BookingServiceErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,10 @@ import static org.apache.commons.lang3.exception.ExceptionUtils.getRootCauseMess
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
-@ControllerAdvice(assignableTypes = ApartmentsController.class)
+@ControllerAdvice(assignableTypes = {
+        ApartmentsController.class,
+        BookingController.class
+})
 @Slf4j
 public class ControllerExceptionHandler {
 
@@ -49,8 +53,8 @@ public class ControllerExceptionHandler {
     @ExceptionHandler({BookingServiceException.class})
     @ResponseStatus(BAD_REQUEST)
     @ResponseBody
-    public BookingServiceErrorResponse onPopupServiceException(HttpServletRequest httpRequest,
-                                                               BookingServiceException exception) {
+    public BookingServiceErrorResponse onBookingServiceException(HttpServletRequest httpRequest,
+                                                                 BookingServiceException exception) {
         var incidentId = generateId();
         log.warn("Service error occurred. Incident ID: {}. Cause: {}",
                 incidentId, getRootCauseMessage(exception), exception);

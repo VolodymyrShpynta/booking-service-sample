@@ -24,6 +24,7 @@ class SwaggerIT extends BaseFunctionalTest {
                 .then()
                 .statusCode(SC_OK)
                 .body("info.title", is("Booking Service API"))
-                .body("paths", hasKey("/public/apartments"));
+                .body("paths", hasKey("/public/apartments"))
+                .body("paths", hasKey("/public/booking"));
     }
 }

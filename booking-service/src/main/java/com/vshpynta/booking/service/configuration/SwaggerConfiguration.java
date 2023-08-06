@@ -15,14 +15,23 @@ import java.util.Optional;
 public class SwaggerConfiguration {
 
     private static final String APARTMENTS_PUBLIC_API_SWAGGER_GROUP_NAME = "apartments-public-api";
+    private static final String APARTMENT_BOOKING_PUBLIC_API_SWAGGER_GROUP_NAME = "booking-public-api";
 
     private final Optional<BuildProperties> buildProperties;
 
     @Bean
-    public GroupedOpenApi popupsPublicApi() {
+    public GroupedOpenApi apartmentsPublicApi() {
         return GroupedOpenApi.builder()
                 .group(APARTMENTS_PUBLIC_API_SWAGGER_GROUP_NAME)
                 .pathsToMatch("/public/apartments/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi bookingPublicApi() {
+        return GroupedOpenApi.builder()
+                .group(APARTMENT_BOOKING_PUBLIC_API_SWAGGER_GROUP_NAME)
+                .pathsToMatch("/public/booking/**")
                 .build();
     }
 

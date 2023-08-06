@@ -1,6 +1,8 @@
 package com.vshpynta.booking.service.persistence.domain;
 
+import com.vshpynta.booking.service.persistence.domain.converter.InstantToTimestampConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +16,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.time.Instant;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
@@ -24,17 +28,22 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "apartments")
-public class ApartmentEntity {
+@Table(name = "apartments_booking")
+public class ApartmentBookingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "apartment_id", insertable = false)
+    @Column(name = "booking_id", insertable = false)
     Long id;
 
-    @Column(name = "apartment_number", nullable = false)
-    int number;
+    @Column(name = "apartment_id")
+    Long apartmentId;
 
-    @Column(name = "apartment_name", nullable = false)
-    String name;
+    @Convert(converter = InstantToTimestampConverter.class)
+    @Column(name = "start_date")
+    Instant startDate;
+
+    @Convert(converter = InstantToTimestampConverter.class)
+    @Column(name = "end_date")
+    Instant endDate;
 }

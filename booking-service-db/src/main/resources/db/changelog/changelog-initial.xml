@@ -7,7 +7,9 @@
 
     <changeSet id="booking_db:tables" author="Volodymyr Shpynta">
         <sqlFile path="tables/create_apartments_table.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="tables/create_apartments_booking_table.sql" relativeToChangelogFile="true"/>
         <rollback>
+            <sqlFile path="tables/rollback_create_apartments_booking_table.sql" relativeToChangelogFile="true"/>
             <sqlFile path="tables/rollback_create_apartments_table.sql" relativeToChangelogFile="true"/>
         </rollback>
     </changeSet>

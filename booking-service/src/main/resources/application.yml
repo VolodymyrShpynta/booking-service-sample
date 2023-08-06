@@ -16,5 +16,8 @@ spring:
     username: my_cool_user
     password: my_cool_secret
     driverClassName: org.mariadb.jdbc.Driver
+  jpa:
+    properties.hibernate:
+      show_sql: true
   liquibase:
     change-log: classpath:db/changelog/changelog-current.xml

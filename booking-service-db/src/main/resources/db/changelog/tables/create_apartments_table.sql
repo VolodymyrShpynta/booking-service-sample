@@ -6,5 +6,5 @@ CREATE TABLE apartments
 
     PRIMARY KEY (apartment_id)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 1000
+  AUTO_INCREMENT = 100
   DEFAULT CHARSET = utf8;
