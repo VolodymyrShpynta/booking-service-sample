@@ -10,7 +10,6 @@ import com.vshpynta.booking.service.rest.dto.ApartmentBooking;
 import com.vshpynta.booking.service.utils.CollectionsUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -23,9 +22,8 @@ import static com.vshpynta.booking.service.utils.StreamUtils.streamOfItems;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 
-@Service
 @RequiredArgsConstructor
-public class DefaultBookingOperations implements BookingOperations {
+public class ExistingRowLockBookingOperations implements BookingOperations {
 
     private final ApartmentBookingMapper apartmentBookingMapper;
     private final ApartmentBookingRepository apartmentBookingRepository;
