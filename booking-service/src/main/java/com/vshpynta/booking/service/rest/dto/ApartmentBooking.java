@@ -18,6 +18,9 @@ public class ApartmentBooking {
     Long apartmentId;
 
     @NotNull
+    String userId;
+
+    @NotNull
     Instant startDate;
 
     @NotNull

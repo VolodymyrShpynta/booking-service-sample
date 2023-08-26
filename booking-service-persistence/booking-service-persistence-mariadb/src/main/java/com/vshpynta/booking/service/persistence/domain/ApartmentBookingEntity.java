@@ -39,6 +39,9 @@ public class ApartmentBookingEntity {
     @Column(name = "apartment_id")
     Long apartmentId;
 
+    @Column(name = "user_id")
+    String userId;
+
     @Convert(converter = InstantToTimestampConverter.class)
     @Column(name = "start_date")
     Instant startDate;
