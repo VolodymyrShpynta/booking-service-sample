@@ -21,3 +21,12 @@ spring:
       show_sql: true
   liquibase:
     change-log: classpath:db/changelog/changelog-current.xml
+
+aerospike:
+  hosts: localhost:3000
+  namespace: booking-service
+  operations:
+    maxAttempts: 5
+    backoff:
+      delay: 3
+      multiplier: 2

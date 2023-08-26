@@ -1,13 +1,13 @@
 package com.vshpynta.booking.service.operations.impl;
 
+import com.vshpynta.booking.service.common.model.ApartmentBooking;
+import com.vshpynta.booking.service.common.utils.CollectionsUtils;
 import com.vshpynta.booking.service.exception.BookingServiceException;
 import com.vshpynta.booking.service.operations.BookingOperations;
 import com.vshpynta.booking.service.operations.mapper.ApartmentBookingMapper;
 import com.vshpynta.booking.service.persistence.domain.ApartmentBookingEntity;
 import com.vshpynta.booking.service.persistence.repository.ApartmentBookingRepository;
 import com.vshpynta.booking.service.persistence.repository.ApartmentRepository;
-import com.vshpynta.booking.service.rest.dto.ApartmentBooking;
-import com.vshpynta.booking.service.utils.CollectionsUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import static com.vshpynta.booking.service.common.utils.FunctionUtils.peek;
+import static com.vshpynta.booking.service.common.utils.StreamUtils.streamOfItems;
 import static com.vshpynta.booking.service.persistence.repository.specification.BookingSpecifications.overlappingBookingSpec;
-import static com.vshpynta.booking.service.utils.FunctionUtils.peek;
-import static com.vshpynta.booking.service.utils.StreamUtils.streamOfItems;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 

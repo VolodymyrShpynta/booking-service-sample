@@ -1,7 +1,7 @@
 package com.vshpynta.booking.service.operations.mapper;
 
+import com.vshpynta.booking.service.common.model.Apartment;
 import com.vshpynta.booking.service.persistence.domain.ApartmentEntity;
-import com.vshpynta.booking.service.rest.dto.Apartment;
 import org.mapstruct.Mapper;
 
 import java.util.Collection;

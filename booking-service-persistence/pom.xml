@@ -16,6 +16,7 @@
     <description>Booking Service persistence parent project</description>
 
     <modules>
+        <module>booking-service-persistence-aerospike</module>
         <module>booking-service-persistence-mariadb</module>
     </modules>
 

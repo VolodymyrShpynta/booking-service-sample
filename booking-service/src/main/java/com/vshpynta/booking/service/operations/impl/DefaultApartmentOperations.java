@@ -1,11 +1,11 @@
 package com.vshpynta.booking.service.operations.impl;
 
+import com.vshpynta.booking.service.common.model.Apartment;
+import com.vshpynta.booking.service.common.utils.CollectionsUtils;
 import com.vshpynta.booking.service.exception.ApartmentNotFoundException;
 import com.vshpynta.booking.service.operations.ApartmentOperations;
 import com.vshpynta.booking.service.operations.mapper.ApartmentMapper;
 import com.vshpynta.booking.service.persistence.repository.ApartmentRepository;
-import com.vshpynta.booking.service.rest.dto.Apartment;
-import com.vshpynta.booking.service.utils.CollectionsUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

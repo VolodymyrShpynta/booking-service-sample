@@ -1,0 +1,13 @@
+embedded:
+  aerospike.time-travel.enabled: false
+  toxiproxy.proxies.aerospike.enabled: true
+
+aerospike:
+  hosts: ${embedded.aerospike.toxiproxy.host}:${embedded.aerospike.toxiproxy.port}
+  namespace: ${embedded.aerospike.namespace}
+  operationTimeoutMs: 500
+  operations:
+    maxAttempts: 5
+    backoff:
+      delay: 3
+      multiplier: 2

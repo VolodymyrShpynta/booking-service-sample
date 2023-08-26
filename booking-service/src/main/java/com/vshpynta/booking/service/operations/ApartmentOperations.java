@@ -1,6 +1,6 @@
 package com.vshpynta.booking.service.operations;
 
-import com.vshpynta.booking.service.rest.dto.Apartment;
+import com.vshpynta.booking.service.common.model.Apartment;
 
 import java.util.Collection;
 import java.util.List;

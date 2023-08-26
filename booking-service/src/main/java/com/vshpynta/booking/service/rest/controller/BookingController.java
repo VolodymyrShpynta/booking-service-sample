@@ -1,7 +1,7 @@
 package com.vshpynta.booking.service.rest.controller;
 
+import com.vshpynta.booking.service.common.model.ApartmentBooking;
 import com.vshpynta.booking.service.operations.BookingOperations;
-import com.vshpynta.booking.service.rest.dto.ApartmentBooking;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;

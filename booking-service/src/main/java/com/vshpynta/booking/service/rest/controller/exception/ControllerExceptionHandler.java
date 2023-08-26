@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import static com.vshpynta.booking.service.common.utils.UuidGenerator.generateId;
 import static com.vshpynta.booking.service.rest.dto.error.PublicErrorCode.GENERAL_ERROR;
-import static com.vshpynta.booking.service.utils.UuidGenerator.generateId;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.exception.ExceptionUtils.getRootCauseMessage;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
