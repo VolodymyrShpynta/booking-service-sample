@@ -37,15 +37,10 @@
             <artifactId>spring-boot-starter-aop</artifactId>
             <exclusions>
                 <exclusion>
-                    <artifactId>spring-boot-starter-logging</artifactId>
                     <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <!-- TEST dependencies :: start -->

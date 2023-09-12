@@ -43,16 +43,16 @@ public class QueryLockBookingOperations implements BookingOperations {
                         apartmentBooking)));
     }
 
-    @SneakyThrows
-    private void simulateLongRunningTask(ApartmentBookingEntity booking) {
-        TimeUnit.SECONDS.sleep(5);
-    }
-
     @Override
     public List<ApartmentBooking> getApartmentsBookings() {
         return streamOfItems(apartmentBookingRepository.findAll())
                 .map(apartmentBookingMapper::map)
                 .collect(toList());
+    }
+
+    @SneakyThrows
+    private void simulateLongRunningTask(ApartmentBookingEntity booking) {
+        TimeUnit.SECONDS.sleep(5);
     }
 
     private boolean hasNoOverlappingWithExistingBooking(ApartmentBookingEntity apartmentBooking) {

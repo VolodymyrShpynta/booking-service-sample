@@ -30,3 +30,12 @@ aerospike:
     backoff:
       delay: 3
       multiplier: 2
+
+booking.kafka:
+  default.brokerList: localhost:29092
+  producer:
+    booking-history:
+      brokerList: ${booking.kafka.default.brokerList}
+      topicName: booking_history
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: org.apache.kafka.common.serialization.StringSerializer

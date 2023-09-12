@@ -44,6 +44,13 @@ public class ExistingRowLockBookingOperations implements BookingOperations {
                         apartmentBooking)));
     }
 
+    @Override
+    public List<ApartmentBooking> getApartmentsBookings() {
+        return streamOfItems(apartmentBookingRepository.findAll())
+                .map(apartmentBookingMapper::map)
+                .collect(toList());
+    }
+
     @SneakyThrows
     private void simulateLongRunningTask(ApartmentBookingEntity booking) {
         TimeUnit.SECONDS.sleep(5);
@@ -53,13 +60,6 @@ public class ExistingRowLockBookingOperations implements BookingOperations {
         apartmentRepository.findAndLock(booking.getApartmentId())
                 .orElseThrow(() -> new BookingServiceException(format("Can't find apartment by ID=%s",
                         booking.getApartmentId())));
-    }
-
-    @Override
-    public List<ApartmentBooking> getApartmentsBookings() {
-        return streamOfItems(apartmentBookingRepository.findAll())
-                .map(apartmentBookingMapper::map)
-                .collect(toList());
     }
 
     private boolean hasNoOverlappingWithExistingBooking(ApartmentBookingEntity apartmentBooking) {
