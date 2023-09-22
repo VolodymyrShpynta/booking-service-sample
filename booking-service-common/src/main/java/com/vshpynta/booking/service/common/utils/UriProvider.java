@@ -1,4 +1,4 @@
-package com.vshpynta.booking.service.kafka.producer.configuration.properties;
+package com.vshpynta.booking.service.common.utils;
 
 import static java.lang.String.format;
 

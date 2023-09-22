@@ -31,11 +31,21 @@ aerospike:
       delay: 3
       multiplier: 2
 
-booking.kafka:
+booking.camel.kafka:
   default.brokerList: localhost:29092
   producer:
     booking-history:
-      brokerList: ${booking.kafka.default.brokerList}
+      brokerList: ${booking.camel.kafka.default.brokerList}
       topicName: booking_history
       keySerializer: org.apache.kafka.common.serialization.StringSerializer
       valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+  consumer:
+    booking-history:
+      brokerList: ${booking.camel.kafka.default.brokerList}
+      topicName: booking_history
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      autoCommitEnable: true
+      groupId: ${spring.application.name}
+      autoOffsetReset: earliest
+      consumersCount: 4

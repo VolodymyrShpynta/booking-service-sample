@@ -1,4 +1,4 @@
-package com.vshpynta.booking.service.kafka.producer.configuration.properties;
+package com.vshpynta.booking.service.kafka.consumer.configuration.properties;
 
 import com.vshpynta.booking.service.common.utils.UriProvider;
 import jakarta.validation.constraints.NotNull;
@@ -16,61 +16,59 @@ import org.springframework.validation.annotation.Validated;
  * This class is for Kafka client 0.9+ only and is NOT backward compatible with 0.8.x client.
  * Make sure to use camel-kafka 2.17+.
  * <p>
+ * How to properly integrate Camel in Spring Boot services see:
+ * <a href="https://wiki.corp/pages/viewpage.action?pageId=63391055">How to integrate Camel</a>
  *
  * @see <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html">Spring boot externalized configuration</a>
  * @see <a href="http://camel.apache.org/kafka.html">Camel Kafka configuration</a>
- * @see <a href="http://kafka.apache.org/documentation.html#producerconfigs">Kafka producer configuration</a>
+ * @see <a href="http://kafka.apache.org/documentation.html#newconsumerconfigs">Kafka consumer configuration</a>
  * @see org.apache.camel.component.kafka.KafkaConfiguration
  */
-@Slf4j
 @Validated
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CamelKafkaProducerConfigurationProperties implements UriProvider {
+@Slf4j
+public class CamelKafkaConsumerConfigurationProperties {
+
     @NotNull
     private String brokerList;
     @NotNull
     private String topicName;
     @NotNull
-    private String valueSerializer;
+    private String keyDeserializer;
     @NotNull
-    private String keySerializer;
+    private String valueDeserializer;
+    @NotNull
+    private Boolean autoCommitEnable;
+    @NotNull
+    private String groupId;
+    @NotNull
+    private String autoOffsetReset;//"latest,earliest,none"
+    @NotNull
+    private Integer consumersCount;
 
     // optional parameters
-    @Builder.Default
-    private String requestRequiredAcks = "0";
-    private String partitioner;
-    private Integer requestTimeoutMs;
-    private String compressionCodec;
-    private Integer retryBackoffMs;
-    private Integer queueBufferingMaxMessages;
-    private Integer sendBufferBytes;
+    private Integer autoCommitIntervalMs;
+    private Integer fetchMinBytes;
+    private Integer fetchMaxBytes;
+    private Integer fetchWaitMaxMs;
     private String clientId;
     private String interceptorClasses;
-    private Boolean bridgeEndpoint;
-    private Boolean circularTopicDetection;
-    private Integer workerPoolCoreSize;
-    private Integer workerPoolMaxSize;
-    private Integer bufferMemorySize;
-    private Integer retries;
-    private Integer producerBatchSize;
-    private Integer connectionMaxIdleMs;
-    private Integer lingerMs;
-    private Integer maxBlockMs;
-    private Integer maxRequestSize;
-    private Integer receiveBufferBytes;
-    private String key;
-    private Integer partitionKey;
-    private Boolean recordMetadata;
-    private Integer maxInFlightRequest;
-    private Integer metadataMaxAgeMs;
-    private String metricReporters;
-    private Integer noOfMetricsSample;
-    private Integer metricsSampleWindowMs;
-    private Integer reconnectBackoffMs;
-    private Boolean synchronousEndpoint;
+    private Integer heartbeatIntervalMs;
+    private Integer maxPartitionFetchBytes;
+    private Integer sessionTimeoutMs;
+    private Integer maxPollRecords;
+    private Long pollTimeoutMs;
+    private String partitionAssignor;
+    private Integer consumerRequestTimeoutMs;
+    private Boolean checkCrcs;
+    private String seekTo;//"beginning,end"
+    private String autoCommitOnStop;//"sync,async,none"
+    private Boolean breakOnFirstError;
+    private Boolean allowManualCommit;
+    private Long maxPollIntervalMs;
 
     // optional security parameters
     private String securityProtocol;
@@ -97,45 +95,36 @@ public class CamelKafkaProducerConfigurationProperties implements UriProvider {
     private String saslMechanism;
     private String saslJaasConfig;
 
-    @Override
     public String getUri() {
-        var options = new StringBuilder("kafka:");
+        StringBuilder options = new StringBuilder("kafka:");
         UriProvider.addRequiredStart(options, "topic", getTopicName());
         UriProvider.addFirstRequiredProperty(options, "brokers", getBrokerList());
-        UriProvider.addRequiredProperty(options, "valueSerializer", getValueSerializer());
-        UriProvider.addRequiredProperty(options, "keySerializer", getKeySerializer());
+        UriProvider.addRequiredProperty(options, "keyDeserializer", getKeyDeserializer());
+        UriProvider.addRequiredProperty(options, "valueDeserializer", getValueDeserializer());
+        UriProvider.addRequiredProperty(options, "autoCommitEnable", getAutoCommitEnable());
+        UriProvider.addRequiredProperty(options, "groupId", getGroupId());
+        UriProvider.addRequiredProperty(options, "autoOffsetReset", getAutoOffsetReset());
+        UriProvider.addRequiredProperty(options, "consumersCount", getConsumersCount());
 
-        UriProvider.addOptionalProperty(options, "requestRequiredAcks", getRequestRequiredAcks());
-        UriProvider.addOptionalProperty(options, "partitioner", getPartitioner());
-        UriProvider.addOptionalProperty(options, "requestTimeoutMs", getRequestTimeoutMs());
-        UriProvider.addOptionalProperty(options, "compressionCodec", getCompressionCodec());
-        UriProvider.addOptionalProperty(options, "retryBackoffMs", getRetryBackoffMs());
-        UriProvider.addOptionalProperty(options, "queueBufferingMaxMessages", getQueueBufferingMaxMessages());
-        UriProvider.addOptionalProperty(options, "sendBufferBytes", getSendBufferBytes());
+        UriProvider.addOptionalProperty(options, "autoCommitIntervalMs", getAutoCommitIntervalMs());
+        UriProvider.addOptionalProperty(options, "fetchMinBytes", getFetchMinBytes());
+        UriProvider.addOptionalProperty(options, "fetchMaxBytes", getFetchMaxBytes());
+        UriProvider.addOptionalProperty(options, "fetchWaitMaxMs", getFetchWaitMaxMs());
         UriProvider.addOptionalProperty(options, "clientId", getClientId());
         UriProvider.addOptionalProperty(options, "interceptorClasses", getInterceptorClasses());
-        UriProvider.addOptionalProperty(options, "bridgeEndpoint", getBridgeEndpoint());
-        UriProvider.addOptionalProperty(options, "circularTopicDetection", getCircularTopicDetection());
-        UriProvider.addOptionalProperty(options, "workerPoolCoreSize", getWorkerPoolCoreSize());
-        UriProvider.addOptionalProperty(options, "workerPoolMaxSize", getWorkerPoolMaxSize());
-        UriProvider.addOptionalProperty(options, "bufferMemorySize", getBufferMemorySize());
-        UriProvider.addOptionalProperty(options, "retries", getRetries());
-        UriProvider.addOptionalProperty(options, "producerBatchSize", getProducerBatchSize());
-        UriProvider.addOptionalProperty(options, "connectionMaxIdleMs", getConnectionMaxIdleMs());
-        UriProvider.addOptionalProperty(options, "lingerMs", getLingerMs());
-        UriProvider.addOptionalProperty(options, "maxBlockMs", getMaxBlockMs());
-        UriProvider.addOptionalProperty(options, "maxRequestSize", getMaxRequestSize());
-        UriProvider.addOptionalProperty(options, "receiveBufferBytes", getReceiveBufferBytes());
-        UriProvider.addOptionalProperty(options, "key", getKey());
-        UriProvider.addOptionalProperty(options, "partitionKey", getPartitionKey());
-        UriProvider.addOptionalProperty(options, "recordMetadata", getRecordMetadata());
-        UriProvider.addOptionalProperty(options, "maxInFlightRequest", getMaxInFlightRequest());
-        UriProvider.addOptionalProperty(options, "metadataMaxAgeMs", getMetadataMaxAgeMs());
-        UriProvider.addOptionalProperty(options, "metricReporters", getMetricReporters());
-        UriProvider.addOptionalProperty(options, "noOfMetricsSample", getNoOfMetricsSample());
-        UriProvider.addOptionalProperty(options, "metricsSampleWindowMs", getMetricsSampleWindowMs());
-        UriProvider.addOptionalProperty(options, "reconnectBackoffMs", getReconnectBackoffMs());
-        UriProvider.addOptionalProperty(options, "synchronous", getSynchronousEndpoint());
+        UriProvider.addOptionalProperty(options, "heartbeatIntervalMs", getHeartbeatIntervalMs());
+        UriProvider.addOptionalProperty(options, "maxPartitionFetchBytes", getMaxPartitionFetchBytes());
+        UriProvider.addOptionalProperty(options, "sessionTimeoutMs", getSessionTimeoutMs());
+        UriProvider.addOptionalProperty(options, "maxPollRecords", getMaxPollRecords());
+        UriProvider.addOptionalProperty(options, "pollTimeoutMs", getPollTimeoutMs());
+        UriProvider.addOptionalProperty(options, "partitionAssignor", getPartitionAssignor());
+        UriProvider.addOptionalProperty(options, "consumerRequestTimeoutMs", getConsumerRequestTimeoutMs());
+        UriProvider.addOptionalProperty(options, "checkCrcs", getCheckCrcs());
+        UriProvider.addOptionalProperty(options, "seekTo", getSeekTo());
+        UriProvider.addOptionalProperty(options, "autoCommitOnStop", getAutoCommitOnStop());
+        UriProvider.addOptionalProperty(options, "breakOnFirstError", getBreakOnFirstError());
+        UriProvider.addOptionalProperty(options, "allowManualCommit", getAllowManualCommit());
+        UriProvider.addOptionalProperty(options, "maxPollIntervalMs", getMaxPollIntervalMs());
 
         UriProvider.addOptionalProperty(options, "securityProtocol", getSecurityProtocol());
         UriProvider.addOptionalProperty(options, "sslKeyPassword", getSslKeyPassword());

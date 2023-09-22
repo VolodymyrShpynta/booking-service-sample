@@ -3,13 +3,19 @@ package com.vshpynta.booking.service.common.model;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
 
-@Value
+import static lombok.AccessLevel.PRIVATE;
+
+@Data
+@NoArgsConstructor
 @Builder(toBuilder = true)
 @AllArgsConstructor(staticName = "of")
+@FieldDefaults(level = PRIVATE)
 public class ApartmentBooking {
 
     Long id;

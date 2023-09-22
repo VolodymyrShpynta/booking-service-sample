@@ -40,7 +40,7 @@ public class ProducersConfiguration {
     }
 
     @Bean
-    @ConfigurationProperties("booking.kafka.producer.booking-history")
+    @ConfigurationProperties("booking.camel.kafka.producer.booking-history")
     public CamelKafkaProducerConfigurationProperties bookingHistoryProducerConfiguration() {
         return new CamelKafkaProducerConfigurationProperties();
     }
