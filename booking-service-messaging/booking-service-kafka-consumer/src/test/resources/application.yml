@@ -1,0 +1,5 @@
+spring:
+  main.allow-bean-definition-overriding: true
+
+#enable debug logging to see spring boot auto configuration issues
+debug: true

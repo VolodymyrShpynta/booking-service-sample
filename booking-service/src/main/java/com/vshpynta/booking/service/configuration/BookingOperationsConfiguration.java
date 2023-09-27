@@ -24,7 +24,10 @@ public class BookingOperationsConfiguration {
 
     @Bean
     public BookingOperations bookingOperations(BookingOperations existingRowLockBookingOperations,
+                                               ApartmentBookingMapper apartmentBookingMapper,
                                                BookingHistoryEventSender bookingHistoryEventSender) {
-        return new HistoryBookingOperations(existingRowLockBookingOperations, bookingHistoryEventSender);
+        return new HistoryBookingOperations(existingRowLockBookingOperations,
+                apartmentBookingMapper,
+                bookingHistoryEventSender);
     }
 }

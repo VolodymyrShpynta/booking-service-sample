@@ -1,6 +1,7 @@
 package com.vshpynta.booking.service.operations.mapper;
 
 import com.vshpynta.booking.service.common.model.ApartmentBooking;
+import com.vshpynta.booking.service.common.model.messaging.ApartmentBookingHistoryMessage;
 import com.vshpynta.booking.service.persistence.domain.ApartmentBookingEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,4 +13,6 @@ public interface ApartmentBookingMapper {
     ApartmentBookingEntity map(ApartmentBooking source);
 
     ApartmentBooking map(ApartmentBookingEntity source);
+
+    ApartmentBookingHistoryMessage toHistoryMessage(ApartmentBooking source);
 }

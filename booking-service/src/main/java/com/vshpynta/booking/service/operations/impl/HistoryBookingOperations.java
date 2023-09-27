@@ -4,6 +4,7 @@ import com.vshpynta.booking.service.common.model.ApartmentBooking;
 import com.vshpynta.booking.service.exception.BookingServiceException;
 import com.vshpynta.booking.service.kafka.producer.BookingHistoryEventSender;
 import com.vshpynta.booking.service.operations.BookingOperations;
+import com.vshpynta.booking.service.operations.mapper.ApartmentBookingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import static java.lang.String.format;
 public class HistoryBookingOperations implements BookingOperations {
 
     private final BookingOperations bookingOperations;
+    private final ApartmentBookingMapper apartmentBookingMapper;
     private final BookingHistoryEventSender bookingHistoryEventSender;
 
     @Override
@@ -35,6 +37,8 @@ public class HistoryBookingOperations implements BookingOperations {
     }
 
     private void sendHistoryMessage(ApartmentBooking booking) {
-        bookingHistoryEventSender.sendEvent(booking);
+        Optional.ofNullable(booking)
+                .map(apartmentBookingMapper::toHistoryMessage)
+                .ifPresent(bookingHistoryEventSender::sendEvent);
     }
 }

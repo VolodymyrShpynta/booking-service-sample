@@ -1,6 +1,6 @@
 package com.vshpynta.booking.service.kafka.consumer.configuration;
 
-import com.vshpynta.booking.service.common.model.ApartmentBooking;
+import com.vshpynta.booking.service.common.model.messaging.ApartmentBookingHistoryMessage;
 import com.vshpynta.booking.service.kafka.consumer.configuration.properties.CamelKafkaConsumerConfigurationProperties;
 import com.vshpynta.booking.service.kafka.consumer.handler.BookingHistoryMessageHandler;
 import org.apache.camel.builder.RouteBuilder;
@@ -32,8 +32,8 @@ public class BookingHistoryRouteConfiguration {
             public void setupRoutes() {
                 from(bookingHistoryConsumerConfiguration.getUri())
                         .routeId(BOOKING_HISTORY_ENDPOINT_ID)
-                        .unmarshal(createJacksonDataFormat(ApartmentBooking.class))
-//                        .to("bean-validator://x")
+                        .unmarshal(createJacksonDataFormat(ApartmentBookingHistoryMessage.class))
+//                        .to("bean-validator://x") //TODO: implement custom validator
                         .log(INFO, "Received booking history message: ${body}")
                         .bean(bookingHistoryMessageHandler);
             }
