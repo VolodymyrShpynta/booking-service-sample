@@ -39,6 +39,7 @@ booking.camel.kafka:
       topicName: booking_history
       keySerializer: org.apache.kafka.common.serialization.StringSerializer
       valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+      request-required-acks: all
   consumer:
     booking-history:
       brokerList: ${booking.camel.kafka.default.brokerList}

@@ -80,7 +80,6 @@ class BookingHistoryRouteTest {
         verifyNoMoreInteractions(bookingHistoryMessageHandler);
     }
 
-    @Disabled //TODO: enable when validation will be implemented
     @Test
     void shouldNotCallMessageHandler_ifMessageValidationFailedWhenBookingStartDateIsNull() {
         //given:

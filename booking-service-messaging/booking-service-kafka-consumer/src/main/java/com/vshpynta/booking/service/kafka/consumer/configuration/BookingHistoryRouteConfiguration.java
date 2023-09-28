@@ -33,7 +33,7 @@ public class BookingHistoryRouteConfiguration {
                 from(bookingHistoryConsumerConfiguration.getUri())
                         .routeId(BOOKING_HISTORY_ENDPOINT_ID)
                         .unmarshal(createJacksonDataFormat(ApartmentBookingHistoryMessage.class))
-//                        .to("bean-validator://x") //TODO: implement custom validator
+                        .to("bean-validator://x")
                         .log(INFO, "Received booking history message: ${body}")
                         .bean(bookingHistoryMessageHandler);
             }
