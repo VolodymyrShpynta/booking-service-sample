@@ -1,0 +1,17 @@
+#enable debug logging to see spring boot auto configuration issues
+debug: true
+
+kafka:
+  test:
+    consumer.brokers: ${embedded.kafka.brokerList}
+    producer.brokers: ${embedded.kafka.brokerList}
+
+booking.camel.kafka:
+  default.brokerList: ${embedded.kafka.brokerList}
+  producer:
+    booking-history:
+      brokerList: ${booking.camel.kafka.default.brokerList}
+      topicName: booking_history
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+      request-required-acks: all

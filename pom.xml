@@ -162,6 +162,12 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>com.playtika.testcontainers</groupId>
+                <artifactId>embedded-kafka</artifactId>
+                <version>${playtika.testcontainers.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>io.github.benas</groupId>
                 <artifactId>random-beans</artifactId>
                 <version>${random-beans.version}</version>
