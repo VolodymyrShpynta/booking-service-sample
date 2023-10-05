@@ -38,6 +38,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
                 BookingHistoryRouteConfiguration.class,
                 BookingHistoryRouteTest.TestConfig.class,
                 CamelAutoConfiguration.class
+        },
+        properties = {
+                "embedded.containers.enabled=false"
         }
 )
 class BookingHistoryRouteTest {

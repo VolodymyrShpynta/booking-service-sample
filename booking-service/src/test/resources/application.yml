@@ -12,3 +12,33 @@ spring:
     change-log: classpath:db/changelog/changelog-current.xml
 
 embedded.mariadb.database: booking_db
+
+aerospike:
+  hosts: ${embedded.aerospike.host}:${embedded.aerospike.port}
+  namespace: ${embedded.aerospike.namespace}
+  operationTimeoutMs: 500
+  operations:
+    maxAttempts: 5
+    backoff:
+      delay: 3
+      multiplier: 2
+
+booking.camel.kafka:
+  default.brokerList: ${embedded.kafka.brokerList}
+  producer:
+    booking-history:
+      brokerList: ${booking.camel.kafka.default.brokerList}
+      topicName: booking_history
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+      request-required-acks: all
+  consumer:
+    booking-history:
+      brokerList: ${booking.camel.kafka.default.brokerList}
+      topicName: booking_history
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      autoCommitEnable: true
+      groupId: ${spring.application.name}
+      autoOffsetReset: earliest
+      consumersCount: 4

@@ -1,6 +1,8 @@
 package com.vshpynta.booking.service;
 
+import com.playtika.test.aerospike.EmbeddedAerospikeBootstrapConfiguration;
 import com.playtika.test.common.spring.DockerPresenceBootstrapConfiguration;
+import com.playtika.test.kafka.configuration.EmbeddedKafkaBootstrapConfiguration;
 import com.playtika.test.mariadb.EmbeddedMariaDBBootstrapConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +14,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         classes = {
                 BookingServiceSampleApplication.class,
                 DockerPresenceBootstrapConfiguration.class,
-                EmbeddedMariaDBBootstrapConfiguration.class
+                EmbeddedMariaDBBootstrapConfiguration.class,
+                EmbeddedAerospikeBootstrapConfiguration.class,
+                EmbeddedKafkaBootstrapConfiguration.class
         },
         webEnvironment = RANDOM_PORT
 )

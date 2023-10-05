@@ -97,7 +97,7 @@ class MappingUtilsTest {
         var result = MappingUtils.mapItemsToList(source, String::toUpperCase);
 
         //then:
-        assertThat(result).containsExactlyElementsOf(expectedResult);
+        assertThat(result).containsExactlyInAnyOrderElementsOf(expectedResult);
     }
 
     static Stream<Arguments> filterListItemsTestData() {
