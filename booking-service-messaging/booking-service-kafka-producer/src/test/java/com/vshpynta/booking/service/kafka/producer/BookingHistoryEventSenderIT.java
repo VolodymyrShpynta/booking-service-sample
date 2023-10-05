@@ -8,7 +8,7 @@ import static com.vshpynta.booking.service.testing.utils.TestDataCreator.buildAp
 import static com.vshpynta.booking.service.testing.utils.TestTimeUtils.TOMORROW;
 import static com.vshpynta.booking.service.testing.utils.TestTimeUtils.TWO_WEEKS_AFTER;
 
-public class BookingHistoryEventSenderFuncTest extends BaseProducerFuncTest {
+public class BookingHistoryEventSenderIT extends BaseProducerIT {
 
     @Test
     void shouldSuccessfullySendBookingHistoryEvent() {

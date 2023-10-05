@@ -16,15 +16,15 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         },
         webEnvironment = RANDOM_PORT
 )
-public abstract class BaseFunctionalTest {
+public abstract class BaseIT {
 
-        @LocalServerPort
-        protected int serverPort;
+    @LocalServerPort
+    protected int serverPort;
 
-        @Value("${server.servlet.context-path}")
-        protected String serverContextPath;
+    @Value("${server.servlet.context-path}")
+    protected String serverContextPath;
 
-        protected String getServerUrl() {
-                return String.format("http://localhost:%s%s", serverPort, serverContextPath);
-        }
+    protected String getServerUrl() {
+        return String.format("http://localhost:%s%s", serverPort, serverContextPath);
+    }
 }

@@ -23,10 +23,10 @@ import java.util.HashMap;
                 DockerPresenceBootstrapConfiguration.class,
                 EmbeddedKafkaBootstrapConfiguration.class,
                 ProducersConfiguration.class,
-                BaseProducerFuncTest.TestConsumerConfiguration.class
+                BaseProducerIT.TestConsumerConfiguration.class
         }
 )
-public abstract class BaseProducerFuncTest {
+public abstract class BaseProducerIT {
 
     @Autowired
     protected BookingHistoryEventSender bookingHistoryEventSender;

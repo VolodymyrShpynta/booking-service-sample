@@ -1,5 +1,22 @@
+#enable debug logging to see spring boot auto configuration issues
+debug: true
+
 spring:
   main.allow-bean-definition-overriding: true
 
-#enable debug logging to see spring boot auto configuration issues
-debug: true
+kafka:
+  test:
+    producer.brokers: ${embedded.kafka.brokerList}
+
+booking.camel.kafka:
+  default.brokerList: ${embedded.kafka.brokerList}
+  consumer:
+    booking-history:
+      brokerList: ${booking.camel.kafka.default.brokerList}
+      topicName: booking_history
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      autoCommitEnable: true
+      groupId: testGroup
+      autoOffsetReset: earliest
+      consumersCount: 4

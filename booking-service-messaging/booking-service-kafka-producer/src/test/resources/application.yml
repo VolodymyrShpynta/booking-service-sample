@@ -4,7 +4,6 @@ debug: true
 kafka:
   test:
     consumer.brokers: ${embedded.kafka.brokerList}
-    producer.brokers: ${embedded.kafka.brokerList}
 
 booking.camel.kafka:
   default.brokerList: ${embedded.kafka.brokerList}

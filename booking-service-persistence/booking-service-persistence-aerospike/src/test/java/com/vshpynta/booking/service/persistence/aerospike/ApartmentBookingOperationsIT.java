@@ -20,7 +20,7 @@ import static com.vshpynta.booking.service.testing.utils.TestTimeUtils.TWO_HOURS
 import static com.vshpynta.booking.service.testing.utils.TestTimeUtils.TWO_WEEKS_AFTER;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ApartmentBookingOperationsFuncTest extends BasePersistenceTest {
+class ApartmentBookingOperationsIT extends BasePersistenceTest {
 
     @Test
     void shouldSuccessfullyAddBooking() {
