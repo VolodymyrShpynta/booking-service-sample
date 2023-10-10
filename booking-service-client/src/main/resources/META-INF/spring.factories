@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.vshpynta.booking.service.client.configuration.BookingPublicFeignClientAutoConfiguration

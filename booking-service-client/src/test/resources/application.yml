@@ -1,0 +1,20 @@
+spring.cloud:
+  openfeign:
+    client:
+      config:
+        default:
+          connect-timeout: 300
+          read-timeout: 1000
+          loggerLevel: full
+    circuitbreaker:
+      enabled: true
+      group.enabled: true
+  loadbalancer:
+    retry:
+      retry-on-all-operations: true
+      max-retries-on-next-service-instance: 3
+      max-retries-on-same-service-instance: 0
+      retryable-status-codes: 404, 500
+  discovery.client.simple.instances:
+    booking-service:
+      - uri: "http://localhost:${wiremock.server.port}"
