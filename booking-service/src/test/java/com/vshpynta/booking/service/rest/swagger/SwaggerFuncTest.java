@@ -1,6 +1,6 @@
 package com.vshpynta.booking.service.rest.swagger;
 
-import com.vshpynta.booking.service.BaseIT;
+import com.vshpynta.booking.service.BaseFuncTest;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.when;
@@ -9,7 +9,7 @@ import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 
-class SwaggerIT extends BaseIT {
+class SwaggerFuncTest extends BaseFuncTest {
 
     @Test
     void shouldExposeSwaggerUi() {

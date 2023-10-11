@@ -26,10 +26,10 @@ import java.util.HashMap;
                 DockerPresenceBootstrapConfiguration.class,
                 EmbeddedKafkaBootstrapConfiguration.class,
                 BookingHistoryRouteConfiguration.class,
-                BaseConsumerIT.TestConsumerConfiguration.class
+                BaseConsumerFuncTest.TestConsumerConfiguration.class
         }
 )
-public abstract class BaseConsumerIT {
+public abstract class BaseConsumerFuncTest {
 
     @Autowired
     protected BookingHistoryMessageHandler bookingHistoryMessageHandlerSpy;

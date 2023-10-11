@@ -90,6 +90,11 @@
             </dependency>
             <dependency>
                 <groupId>com.vshpynta.booking</groupId>
+                <artifactId>booking-service-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vshpynta.booking</groupId>
                 <artifactId>booking-service</artifactId>
                 <version>${project.version}</version>
                 <classifier>original</classifier>

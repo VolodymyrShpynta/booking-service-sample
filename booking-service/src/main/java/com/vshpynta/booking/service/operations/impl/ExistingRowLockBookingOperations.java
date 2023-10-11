@@ -36,7 +36,7 @@ public class ExistingRowLockBookingOperations implements BookingOperations {
                 .map(apartmentBookingMapper::map)
                 .map(peek(this::lookApartment))
                 .filter(this::hasNoOverlappingWithExistingBooking)
-                .map(peek(this::simulateLongRunningTask)) //do this simulation to have ability easily get race conditions
+//                .map(peek(this::simulateLongRunningTask)) //do this simulation to have ability easily get race conditions
                 .map(apartmentBookingRepository::save)
                 .map(apartmentBookingMapper::map)
                 //TODO: throw conflict exception and return specific error code to the client

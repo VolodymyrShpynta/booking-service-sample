@@ -1,6 +1,6 @@
 package com.vshpynta.booking.service.kafka.consumer;
 
-import com.vshpynta.booking.service.kafka.BaseConsumerIT;
+import com.vshpynta.booking.service.kafka.BaseConsumerFuncTest;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -13,7 +13,7 @@ import static com.vshpynta.booking.service.testing.utils.TestTimeUtils.TWO_WEEKS
 import static org.mockito.Mockito.verify;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
-public class BookingHistoryConsumerIT extends BaseConsumerIT {
+public class BookingHistoryConsumerFuncTest extends BaseConsumerFuncTest {
 
     private static final Duration DEFAULT_TIMEOUT_DURATION = Duration.ofSeconds(5);
 
