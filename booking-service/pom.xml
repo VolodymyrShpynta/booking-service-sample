@@ -73,6 +73,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-mockmvc</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.vshpynta.booking</groupId>
             <artifactId>booking-service-testing-utils</artifactId>
             <scope>test</scope>
