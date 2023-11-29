@@ -2,6 +2,23 @@ server:
   port: 8080
   servlet.context-path: /booking-service
 
+management:
+  server:
+    port: 8081
+    base-path: /
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    metrics.enabled: true
+  endpoints:
+    web:
+      base-path: /
+      exposure.include: '*'
+  info.git.mode: full
+  prometheus:
+    metrics.export.enabled: true
+
 #TODO: move to functional tests module
 spring:
   application.name: booking-service
