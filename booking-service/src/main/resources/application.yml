@@ -11,6 +11,7 @@ management:
   endpoint.health.show-details: always
 
 spring:
+  application.name: booking-service
   datasource:
     url: jdbc:mariadb://localhost:3306/booking_db?createDatabaseIfNotExist=true
     username: my_cool_user
